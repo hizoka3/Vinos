@@ -23,14 +23,13 @@
     </ul>
 
 
-    <button onclick="mostrarVinos()">Mostrar Vinos</button>
 
     <script type="text/javascript">
 
       Parse.initialize("cxbqQa5yG5W76JVbqfJJ1VP9oD6J0aZaGeBtHxlL", "cGrWHJF7NBijIIsFGBxgPVs2sVMcKkL73uQU5Imp");
       var ObjetoVinos = Parse.Object.extend("vinos");
 
-      function mostrarVinos(){
+      $(document).ready( function(){
         $('#listaDeVinos').html("")
 
         var query = new Parse.Query(ObjetoVinos);
@@ -52,7 +51,7 @@
             }
 
           })
-      }
+      });
 
     </script>
   </body>
