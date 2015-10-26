@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html lang="es">
+   
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <title>Vinos Chilenos</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+
+    <!-- Parse -->
+    <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+
+    <!--inserta jquery -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  </head>
+
+  <body>
+
+    <h1>Vinos Chilenos</h1>
+    <ul id="listaDeVinos">    
+    </ul>
+
+
+
+    <script type="text/javascript">
+
+      Parse.initialize("cxbqQa5yG5W76JVbqfJJ1VP9oD6J0aZaGeBtHxlL", "cGrWHJF7NBijIIsFGBxgPVs2sVMcKkL73uQU5Imp");
+      var ObjetoVinos = Parse.Object.extend("vinos");
+
+      $(document).ready(function(){
+
+        var query = new Parse.Query(ObjetoVinos);
+        query.descending('precio')
+
+        query.find({
+            success:function(resultados){
+
+              for( var i = 0; i < resultados.length ; i++ ){
+                var objetoParse = resultados[i]
+
+                var nombreDelVino = objetoParse.get('nombre');
+                var precioDelVino = objetoParse.get('precio');
+
+                $('#listaDeVinos').append('<li><p>' + nombreDelVino + '</p><span> $' + precioDelVino + '</span></li>')
+
+              }
+
+            }
+
+          })
+      });
+
+    </script>
+  </body>
+</html>
